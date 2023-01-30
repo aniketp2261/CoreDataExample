@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClick))
     }
     @objc func refresh(sender:AnyObject) {
-        self.check()
+        self.API()
         refreshControl.endRefreshing()
     }
     func check(){
@@ -138,12 +138,12 @@ class ViewController: UIViewController {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do {
             employeeData.removeAll()
-            let result = try? context.fetch(deleteFetch)
-            let resultData = result as! [Employee]
-            for object in resultData {
-                context.delete(object)
-            }
-//            try context.execute(deleteRequest)
+//            let result = try? context.fetch(deleteFetch)
+//            let resultData = result as! [Employee]
+//            for object in resultData {
+//                context.delete(object)
+//            }
+            try context.execute(deleteRequest)
             try context.save()
         } catch {
             print ("There was an error")
