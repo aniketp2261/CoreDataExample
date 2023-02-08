@@ -138,11 +138,6 @@ class ViewController: UIViewController {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do {
             employeeData.removeAll()
-//            let result = try? context.fetch(deleteFetch)
-//            let resultData = result as! [Employee]
-//            for object in resultData {
-//                context.delete(object)
-//            }
             try context.execute(deleteRequest)
             try context.save()
         } catch {
